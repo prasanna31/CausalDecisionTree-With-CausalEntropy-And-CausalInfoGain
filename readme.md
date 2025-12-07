@@ -26,4 +26,4 @@ Get the Python env setup with the basics installation needed. If not present alr
 
 
 ## **Output:** 
-![result](./datasets.result.png)
+<img src="./datasets/result.png" width="400">

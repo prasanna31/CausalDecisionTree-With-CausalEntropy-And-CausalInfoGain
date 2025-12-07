@@ -197,69 +197,6 @@ class Preprocessor:
 
         return data
 
-    # @staticmethod
-    # def preprocess_hypothyroid_data(df):
-    #     if df.shape[1] == 26:
-    #         # --- 26-COLUMN VERSION (Target is first) ---
-    #         df.columns = [
-    #             "class", "age", "sex", "on_thyroxine", "query_on_thyroxine",
-    #             "on_antithyroid_medication", "sick", "pregnant", "thyroid_surgery",
-    #             "I131_treatment", "query_hypothyroid", "query_hyperthyroid", "lithium",
-    #             "goitre", "TSH_measured", "TSH", "T3_measured", "T3", "TT4_measured",
-    #             "TT4", "T4U_measured", "T4U", "FTI_measured", "FTI", "TBG_measured", "TBG"
-    #         ]
-    #     else:
-    #         # --- 30-COLUMN VERSION (Target is last) ---
-    #         df.columns = [
-    #             "age", "sex", "on_thyroxine", "query_on_thyroxine", "on_antithyroid_medication",
-    #             "sick", "pregnant", "thyroid_surgery", "I131_treatment", "query_hypothyroid",
-    #             "query_hyperthyroid", "lithium", "goitre", "tumor", "hypopituitary",
-    #             "psych", "TSH_measured", "TSH", "T3_measured", "T3", "TT4_measured",
-    #             "TT4", "T4U_measured", "T4U", "FTI_measured", "FTI", "TBG_measured",
-    #             "TBG", "referral_source", "class"
-    #         ]
-
-    #     df = df.replace("?", np.nan).dropna()
-    #     data = pd.DataFrame()    
-    #     numeric_cols = ["age", "TSH", "T3", "TT4", "T4U", "FTI", "TBG"]
-    #     for col in numeric_cols:
-    #         df[col] = pd.to_numeric(df[col], errors='coerce')
-    #     df = df.dropna(subset=['class'])
-
-    #     data = pd.DataFrame()
-    #     data['hypothyroid'] = df['class'].apply(lambda x: 0 if 'negative' in str(x).lower() else 1)
-    #     data['age>60'] = (df['age'] > 60).astype(int)
-    #     data['age<30'] = (df['age'] < 30).astype(int)
-    #     data['sex_M'] = (df['sex'] == 'M').astype(int)
-    #     data['sex_F'] = (df['sex'] == 'F').astype(int)
-    #     binary_flags = [
-    #         "on_thyroxine", "query_on_thyroxine", "on_antithyroid_medication",
-    #         "sick", "pregnant", "thyroid_surgery", "I131_treatment",
-    #         "query_hypothyroid", "query_hyperthyroid", "lithium", 
-    #         "goitre", "tumor", "hypopituitary", "psych"
-    #     ]
-        
-    #     for col in binary_flags:
-    #         data[col] = (df[col] == 't').astype(int)
-    #     data['TSH_high'] = (df['TSH'] > 6).astype(int)
-    #     data['TSH_low'] = (df['TSH'] < 0.05).astype(int)
-    #     data['T3_low'] = (df['T3'] < 1.2).astype(int)
-    #     data['TT4_low'] = (df['TT4'] < 60).astype(int)
-    #     data['T4U_low'] = (df['T4U'] < 0.7).astype(int)
-    #     data['FTI_low'] = (df['FTI'] < 65).astype(int)
-    #     data['TBG_high'] = ((df['TBG'].notna()) & (df['TBG'] > 30)).astype(int)
-    #     measured_cols = ["TSH_measured", "T3_measured", "TT4_measured", 
-    #                      "T4U_measured", "FTI_measured", "TBG_measured"]
-        
-    #     for col in measured_cols:
-    #         data[col] = (df[col] == 't').astype(int)
-    #     data['referral_SVI'] = (df['referral_source'] == 'SVI').astype(int)
-    #     data['referral_SVHC'] = (df['referral_source'] == 'SVHC').astype(int)
-    #     data['referral_STMW'] = (df['referral_source'] == 'STMW').astype(int)
-    #     data['referral_SVHD'] = (df['referral_source'] == 'SVHD').astype(int)
-    #     data['referral_other'] = (~df['referral_source'].isin(['SVI', 'SVHC', 'STMW', 'SVHD'])).astype(int)
-    #     return data
-    
     @staticmethod
     def preprocess_hypothyroid_data(df):
         # 1. DETECT VERSION & ASSIGN NAMES

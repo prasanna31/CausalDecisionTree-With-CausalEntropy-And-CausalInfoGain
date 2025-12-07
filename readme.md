@@ -26,16 +26,4 @@ Get the Python env setup with the basics installation needed. If not present alr
 
 
 ## **Output:** 
-==================================================
-FINAL COMPARISON TABLE
-==================================================
-Method                 IT       MH      STD
-Dataset                                    
-Adult              79.53%   79.53%   79.53%
-Breast Cancer      90.51%   89.78%   91.24%
-Car Evaluation    100.00%  100.00%  100.00%
-Chess (Kr-vs-Kp)   93.91%   93.59%   96.25%
-German Credit      67.50%   74.00%   69.00%
-House Votes        97.87%   48.94%   93.62%
-Hypothyroid        99.37%   99.37%   99.21%
-Mushroom          100.00%   66.78%  100.00%
+![result](./datasets.result.png)

@@ -27,3 +27,10 @@ Get the Python env setup with the basics installation needed. If not present alr
 
 ## **Output:** 
 <img src="./datasets/result.png" width="400">
+
+
+ ### Using Mantel-Haenszel Causal Decision Tree on Adult Dataset:
+![Causal Decision Tree Visualization](images/adult_MH_CDT.png)
+
+### Using Information Theory Causal Decision Tree on Adult Dataset:
+![Causal Decision Tree Visualization](images/adult_IT_CDT.png)

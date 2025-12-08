@@ -124,14 +124,30 @@ class BaseCausalDecisionTree(ABC):
             return labels[0]
         return None
 
-    def print_tree(self, node=None, indent=""):
-        if node is None: node = self.tree
+    def print_tree(self, node=None, indent="", is_last=True, branch_label=""):
+        if node is None:
+            node = self.tree
+
+        # Branch prefix (├── or └──)
+        branch = "└── " if is_last else "├── "
+        connector = indent + branch if branch_label else ""
+
+        # Print leaf node
         if node['type'] == 'leaf':
-            print(f"{indent}Leaf: Outcome={node['label']} (n={node['samples']})")
-        else:
-            meta_str = ", ".join([f"{k}: {v}" for k, v in node['meta'].items()])
-            print(f"{indent}Split: {node['feature']} [{meta_str}]")
-            for val, child in node['children'].items():
-                print(f"{indent}  |--- {node['feature']} == {val}:")
-                self.print_tree(child, indent + "    ")
+            print(f"{connector}{branch_label}Leaf: Outcome={node['label']} (n={node['samples']})")
+            return
+
+        # Print split node
+        meta_str = ", ".join([f"{k}: {v}" for k, v in node['meta'].items()])
+        print(f"{connector}{branch_label}Split: {node['feature']} [{meta_str}]")
+
+        # Prepare indentation for children
+        child_indent = indent + ("    " if is_last else "│   ")
+
+        # Iterate through children
+        children_items = list(node['children'].items())
+        for i, (val, child) in enumerate(children_items):
+            last = (i == len(children_items) - 1)
+            label = f"{node['feature']} == {val}: "
+            self.print_tree(child, child_indent, last, label)
 
